@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:game_of_thrones_quotes/extensions.dart';
 
 import '../api/got_service.dart';
 import '../models/quotes.dart';
@@ -13,6 +14,7 @@ class CharacterDetailScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Character Name'),
@@ -21,6 +23,7 @@ class CharacterDetailScreen extends StatelessWidget {
         future: GotService().loadCharacter(slug),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
+            bool isDataOrNull = snapshot.data!.house.isDataOrNull;
             return Column(
               children: [
                 Padding(
@@ -55,7 +58,7 @@ class CharacterDetailScreen extends StatelessWidget {
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Text(
-                            snapshot.data!.house!.name!,
+                            isDataOrNull ? 'N/A' : snapshot.data!.house!.name!,
                             style: const TextStyle(
                                 fontSize: 20,),
                           ),

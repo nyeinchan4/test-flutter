@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:game_of_thrones_quotes/screens/character_detail_screen.dart';
+import 'package:get/get.dart';
 
 import '../api/got_service.dart';
 import '../models/quotes.dart';
@@ -40,7 +41,8 @@ class _QuoteListScreenState extends State<QuoteListScreen> {
               itemBuilder: (BuildContext context, int index) {
                 return InkWell(
                   onTap: () {
-                    navigateToDetail(context,snapshot.data![index].character!.slug!);
+                    String naviSlug = snapshot.data![index].character!.slug!;
+                    Get.to(CharacterDetailScreen(slug: naviSlug));
                   },
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
