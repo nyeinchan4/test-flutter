@@ -2,7 +2,7 @@
     package="me.ktz.game_of_thrones_quotes">
     <uses-permission android:name="android.permission.INTERNET"/>
    <application
-        android:label="game_of_thrones_quotes"
+        android:label="GOT Quotes"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

@@ -54,38 +54,43 @@ class _MyHomePageState extends State<MyHomePage> {
         future: futureQuotes,
         builder: (context, snapshot) {
           if (snapshot.hasData) {
-            return ListView.builder(
+            return ListView.separated(
+              separatorBuilder: (BuildContext context, int index) =>
+                  const Divider(),
               padding: const EdgeInsets.all(16),
               itemCount: snapshot.data!.length,
               itemBuilder: (BuildContext context, int index) {
-                return Card(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.all(16),
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Text(
-                          snapshot.data![index].sentence ?? 'When you play the game of thrones, you win or you die.',
-                          style: const TextStyle(fontFamily: 'Cinzel',fontSize: 20,color: Colors.black),
-                        ),
-                        Text(
-                          snapshot.data![index].character!.name ?? 'Cersie',
-                          style: const TextStyle(fontFamily: 'Cinzel',fontSize: 18),
-                          textAlign: TextAlign.end,
-                        ),
-                      ],
+                return Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    Text(
+                      snapshot.data![index].sentence ??
+                          'When you play the game of thrones, you win or you die.',
+                      style: const TextStyle(
+                        fontFamily: 'Cinzel',
+                        fontSize: 20,
+                        color: Colors.black,
+                        fontWeight: FontWeight.w500,
+                      ),
                     ),
-                  ),
+                    const SizedBox(
+                      height: 16,
+                    ),
+                    Text('- ${snapshot.data![index].character!.name ?? 'Cersie'}',
+                      style: const TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.w300,
+                      ),
+                      textAlign: TextAlign.end,
+                    ),
+                  ],
                 );
               },
             );
           } else if (snapshot.hasError) {
             return Text('${snapshot.error}');
           }
-          return const CircularProgressIndicator();
+          return const Center(child: CircularProgressIndicator());
         },
       ),
     );
