@@ -20,7 +20,7 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      title: 'GOT Quotes',
+      title: 'GOT Quotes Pipeline Test',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
