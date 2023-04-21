@@ -20,14 +20,4 @@ jobs:
           flutter analyze
           flutter test
           flutter build apk --debug
-      - name: Retrieve Release Version
-        id: versionstep
-        run: |
-          VERSION=$(more pubspec.yaml | grep version: | cut -d ' ' -f2)
-          echo "::set-output name=VERSION::$VERSION"
-      - name: Upload the APK onto Github
-        uses: ncipollo/release-action@v1
-        with:
-          artifacts: 'build/app/outputs/flutter-apk/app-debug.apk'
-          token: ${{ secrets.MY_GITHUB_TOKEN }}
-          tag: ${{ steps.versionstep.outputs.VERSION }}
+     
